@@ -24,7 +24,7 @@ resetButton.addEventListener("click", () => {
 
 // handle button clicks
 keyboardButtons.addEventListener('click', evt => {
-    if(event.target.tagName === 'BUTTON') {
+    if(evt.target.tagName === 'BUTTON') {
         game.handleInteraction(evt);
     }
 });
@@ -33,15 +33,15 @@ keyboardButtons.addEventListener('click', evt => {
 document.addEventListener('keypress', evt => {
     // Only accept letters
     const filter = /[a-zA-Z]+/;
-    if (filter.test(event.key) && event.key !== 'Enter') {
+    if (filter.test(evt.key) && evt.key !== 'Enter') {
         // add pressed keys to a list and prevent reuse of that key
-        keys.push(event.key);
+        keys.push(evt.key);
         const pressedKeys = keys.slice(0, keys.length - 1);
-        if (pressedKeys.indexOf(event.key) > -1) {
-            event.preventDefault();
+        if (pressedKeys.indexOf(evt.key) > -1) {
+            evt.preventDefault();
             return false;
         } else {
-            game.handleInteraction(event);
+            game.handleInteraction(evt);
         }
     }
 });

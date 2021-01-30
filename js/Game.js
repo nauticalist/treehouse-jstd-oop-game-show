@@ -57,21 +57,32 @@ class Game {
         }
 
         if (this.activePhrase.checkLetter(buttonValue)) {
-            // disable and add style to pressed key
-            keys.forEach(key => {
-                if (event.key === key.innerText) {
-                    key.disabled = true;
-                    key.classList.add("chosen");
-                }
-            });
+
+            if (event.type === 'click') {
+                event.target.disabled = true;
+                event.target.classList.add("chosen");
+            } else if (event.type === 'keypress') {
+                keys.forEach(key => {
+                    if (event.key === key.innerText) {
+                        key.disabled = true;
+                        key.classList.add("chosen");
+                    }
+                });
+            }
+
             this.activePhrase.showMatchedLetter(buttonValue);
         } else {
-            keys.forEach(key => {
-                if (event.key === key.innerText) {
-                    key.disabled = true;
-                    key.classList.add("wrong");
-                }
-            });
+            if (event.type === 'click') {
+                event.target.disabled = true;
+                event.target.classList.add("wrong");
+            } else if (event.type === 'keypress') {
+                keys.forEach(key => {
+                    if (event.key === key.innerText) {
+                        key.disabled = true;
+                        key.classList.add("wrong");
+                    }
+                });
+            }
             this.removeLife();
         }
 
