@@ -25,7 +25,14 @@ resetButton.addEventListener("click", () => {
 // handle button clicks
 keyboardButtons.addEventListener('click', evt => {
     if(evt.target.tagName === 'BUTTON') {
-        game.handleInteraction(evt);
+        keys.push(evt.target.textContent);
+        const pressedKeys = keys.slice(0, keys.length - 1);
+        if (pressedKeys.indexOf(evt.target.textContent) > -1) {
+            evt.preventDefault();
+            return false;
+        } else {
+            game.handleInteraction(evt);
+        }
     }
 });
 
