@@ -15,7 +15,7 @@ let keys = [];
 resetButton.addEventListener("click", () => {
     // if restarting a game reset board first
     if (game) {
-        let keys = [];
+        keys = [];
         game.resetGame();
     }
     // initialize new game
